@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Foto Bareng Kelas E1 TI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at top, #12063a, #050014);
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /*  Efek bintang */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .stars span {
+      position: absolute;
+      display: block;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00eaff;
+      font-size: 2rem;
+      margin-top: 40px;
+      margin-bottom: 25px;
+      text-shadow: 0 0 15px rgba(0,234,255,0.6);
+      z-index: 1;
+      animation: fadeIn 2s ease-out;
+    }
+
+    /*  Galeri foto */
+    .foto-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,234,255,0.2);
+      width: 90%;
+      max-width: 1200px;
+      margin-bottom: 40px;
+      z-index: 1;
+      animation: fadeIn 2.5s ease-out;
+    }
+
+    .foto-item {
+      overflow: hidden;
+      border-radius: 15px;
+      position: relative;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .foto-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+      transition: transform 0.4s ease;
+      box-shadow: 0 0 25px rgba(123,47,247,0.3);
+    }
+
+    .foto-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0,234,255,0.5);
+    }
+
+    .foto-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .link
+
+    p {
+      margin-bottom: 40px;
+      color: #ccc;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      z-index: 1;
+      animation: fadeIn 3s ease-out;
+    }
+
+    /* Animasi fade-in */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <h1>📸 Foto Bareng Kelas E1 Teknologi Informasi</h1>
+
+  <div class="foto-container">
+    <div class="foto-item">
+      <img src="images/kelas.jpg" alt="Foto Kelas 1">
+    </div>
+    <div class="foto-item">
+      <img src="images/kelas2.jpg" alt="Foto Kelas 2">
+    </div>
+    <div class="foto-item">
+      <img src="images/kelas3.jpg" alt="Foto Kelas 3">
+    </div>
+    <div class="foto-item">
+      <img src="images/kelas4.jpg" alt="Foto Kelas 4">
+    </div>
+  </div>
+
+  <p>"Masuk bareng, Lulus bareng"</p>
+  <div class="linkumsu">
+    <a href="https://umsu.ac.id" target="_blank" style="color: white; text-decoration: none;">Universitas Muhammadiyah Sumatera Utara</a>
+    
+  </div>
+
+  <script>
+    // 🌟 Buat bintang acak
+    const starsContainer = document.querySelector('.stars');
+    const starCount = 100;
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('span');
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const delay = Math.random() * 5;
+      const duration = 2 + Math.random() * 3;
+      star.style.left = `${x}%`;
+      star.style.top = `${y}%`;
+      star.style.animationDelay = `${delay}s`;
+      star.style.animationDuration = `${duration}s`;
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>

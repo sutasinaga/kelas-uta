@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil Anggota Kelas E1 TI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-blue: #00eaff;
+      --neon-purple: #7b2ff7;
+      --dark-bg: #0b0b14;
+      --sidebar-bg: #141422;
+      --text-light: #eaeaea;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0b0b14, #141422, #0b0b14);
+      color: var(--text-light);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* 🔹 Bagian Atas (Hero Bar) */
+    .hero {
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      color: #fff;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+      position: relative;
+    }
+
+    /* Tombol menu (toggle) */
+    .menu-btn {
+      position: absolute;
+      left: 20px;
+      top: 15px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .menu-btn:hover {
+      background: rgba(0,234,255,0.3);
+      box-shadow: 0 0 10px rgba(0,234,255,0.4);
+    }
+
+    /*  Tombol Kembali */
+    .back-btn {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 15px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: rgba(123, 47, 247, 0.4);
+      box-shadow: 0 0 10px rgba(123, 47, 247, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* 🔹 Layout utama */
+    .container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 80px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Sidebar tersembunyi di awal */
+    .sidebar {
+      position: absolute;
+      top: 0;
+      left: -280px;
+      width: 260px;
+      height: 100%;
+      background: var(--sidebar-bg);
+      padding: 20px;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: left 0.4s ease;
+      z-index: 5;
+    }
+
+    /* Saat aktif */
+    .sidebar.active {
+      left: 0;
+      box-shadow: 5px 0 15px rgba(0, 234, 255, 0.2);
+    }
+
+    .sidebar h4 {
+      color: var(--neon-blue);
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    /* Input Search */
+    .search-box {
+      margin-bottom: 15px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 8px rgba(0,234,255,0.5);
+    }
+
+    /* Daftar mahasiswa */
+    .list {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .list a {
+      display: block;
+      text-decoration: none;
+      color: #ddd;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid transparent;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .list a:hover {
+      background: rgba(0,234,255,0.1);
+      border-left: 3px solid var(--neon-blue);
+      color: var(--neon-blue);
+      transform: translateX(4px);
+      box-shadow: 0 0 10px rgba(0,234,255,0.3);
+    }
+
+    /* Konten iframe */
+    iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+      height: 100%;
+      background: #0f0f1a;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    /* Scrollbar futuristik */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--neon-blue);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <button class="menu-btn" id="menuToggle">☰</button>
+    PROFIL ANGGOTA KELAS E1 TI
+    <!-- Tombol kembali -->
+    <button class="back-btn" onclick="window.location.href='A.html'">🏠 Kembali</button>
+  </div>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <h4>DAFTAR MAHASISWA</h4>
+
+      <!-- Fitur Search -->
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari nama mahasiswa...">
+      </div>
+
+      <div class="list" id="studentList">
+        <a href="ade.html" target="konten">ADE LIDYA APRILIA</a>
+        <a href="andre.html" target="konten">ANDRE DAFFARI SINAGA</a>
+        <a href="arya.html" target="konten">ARYA ADITYA</a>
+        <a href="tanjung.html" target="konten">ALIF FATHAR SYAH TANJUNG</a>
+        <a href="aldy.html" target="konten">BAYU ALDY PRABOWO</a>
+        <a href="dava.html" target="konten">DAVA ADITYA PERDANA</a>
+        <a href="erika.html" target="konten">ERIKA SILFAN</a>
+        <a href="eme.html" target="konten">EMME KARUNIA</a>
+        <a href="kebab.html" target="konten">FARHAN HUSAINI LUBIS</a>
+        <a href="harun.html" target="konten">HARUN ALRASIYD</a>
+        <a href="habib.html" target="konten">HASANUL HABIB FATRA</a>
+        <a href="imam.html" target="konten">IMAM NAHROWI LUBIS</a>
+        <a href="iwan.html" target="konten">IKHWAN HASYIM LUBIS</a>
+        <a href="ismi.html" target="konten">ISMI PUTRI NASUHA</a>
+        <a href="akbar.html" target="konten">MUHAMMAD AKBAR ADITYA SARAGIH</a>
+        <a href="gilang.html" target="konten">MUHAMMAD DWI GEMILANG SYARIF</a>
+        <a href="riasyad.html" target="konten">MUHAMMAD RIASYAD ISHAK</a>
+        <a href="zaki.html" target="konten">MUHAMMAD ZAKI ADFA</a>
+        <a href="mir.html" target="konten">MIR'ATIL HAYATI</a>
+        <a href="uta.html" target="konten">MUHAMMAD ARYASUTA SINAGA</a>
+        <a href="nararya.html" target="konten">NARARYA BINTANG HARIRI</a>
+        <a href="uti.html" target="konten">PUTRI HANI SIMAJUNTAK</a>
+        <a href="gondrong.html" target="konten">QAULAN SADIDA BUKHARI</a>
+        <a href="gendut.html" target="konten">RIFQI AUNUR RAHMAN</a>
+        <a href="rafid.html" target="konten">RAFID MUHAMMAD</a>
+        <a href="rois.html" target="konten">ROIS ALPARISY</a>
+        <a href="tomi.html" target="konten">SUTOMI HORAS NASUTION</a>
+        <a href="sultan.html" target="konten">SULTAN ZACKY PUTRA SINAGA</a>
+        <a href="jana.html" target="konten">TAJJANA MAIZLAN</a>
+        <a href="toriq.html" target="konten">THORIQ ZACHARY ARDYANSYAH</a>
+        <a href="vio.html" target="konten">VIORA OKTA DIVA SIMANGUNGSONG</a>
+      </div>
+    </div>
+
+    <!-- Konten utama -->
+    <iframe name="konten" src="AA.html"></iframe>
+  </div>
+
+  <script>
+    //  Toggle Sidebar
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+
+    // Pencarian mahasiswa
+    const searchInput = document.getElementById("searchInput");
+    const studentList = document.getElementById("studentList");
+    const items = studentList.getElementsByTagName("a");
+
+    searchInput.addEventListener("keyup", function() {
+      const filter = searchInput.value.toLowerCase();
+      for (let i = 0; i < items.length; i++) {
+        const txtValue = items[i].textContent || items[i].innerText;
+        items[i].style.display = txtValue.toLowerCase().includes(filter) ? "" : "none";
+      }
+    });
+  </script>
+</body>
+</html>
